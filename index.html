@@ -26,14 +26,21 @@
       </nav>
     <div class="row main">
         <div class="col s12 m3">
-            <div class="input-field col s12">
-                <input type="text" id="autocomplete-input" class="autocomplete">
-                <label for="autocomplete-input">Autocomplete</label>
-              </div>
+          <div class="input-group">
+            <input id="search-input" type="text" class="form-control" placeholder="Search...">
+            <span class="input-group-btn">
+                <button id="search-button" class="btn waves-effect waves-light" type="button">Search</button>
+            </span>
+          </div> 
+          <div class="input-field col s12">
+            <input type="text" id="autocomplete-input" class="autocomplete">
+            <label for="autocomplete-input">Autocomplete</label>
+          </div>
         </div>
         <div class="col s12 m9">chart display</div>
     </div>
     <footer class="page-footer">Footer</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="assets/js/script.js"></script>    
 </body>
