@@ -1,27 +1,81 @@
 * {
-    /*outline: 1px solid greenyellow;*/
+    font-family: 'DM Serif Text', serif;
+   
+
 }
 
-body {
-    height: 100vh;
+ body { 
+    height: 100%;
     width: 100vw;
 }
 
-.navbar {
-    padding-top: 25px;
-    display: flex;
+
+
+
+
+
+
+
+
+.nav-wrapper{
+    background: rgb(0,0,0);
+background: linear-gradient(6deg, rgba(0,0,0,1) 31%, rgba(115,115,115,1) 100%);
+   
+    
+
 }
+
 
 .nav-btn a {
     width: auto !important;
+
+    color: black;
+
+    
+  
+    
 }
+.waves-effect.waves-light.btn{
+    color: orange;
+    background: rgb(0,0,0);
+background: linear-gradient(173deg, rgba(0,0,0,1) 31%, rgba(115,115,115,1) 100%);
+}
+
 
 .brand-logo {
     max-height: 100px;
     max-width: 100px;
+    
 }
 
 .brand-logo img {
     height: 100%;
     width: 100%;
 }
+
+/* .input-group {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  } */
+
+  /* .main {
+    height: 100%;
+  }
+   */
+  
+
+footer{
+
+
+    background: rgb(0,0,0);
+background: linear-gradient(6deg, rgba(0,0,0,1) 31%, rgba(115,115,115,1) 100%);
+
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+  
+
+}
+
