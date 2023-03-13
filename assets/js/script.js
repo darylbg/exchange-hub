@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Click event 
+    var historicalData = [];
     function searchListener() {
     $('#stock-list li').on('click', function() {
         var symbol = $(this).data('symbol');
@@ -58,17 +59,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (response.ok) {
                     response.json().then(function (data) {
                         console.log(data);
+                        
                     });
                 } else {
                     alert('error');
                 }
             })
         // gets historical data from alpha vantage api
-        fetch("https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=" + symbol + "&apikey=ECSVW0D22JG4GNHG")
+        fetch("https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=" + symbol + "&apikey=ECSVW0D22JG4GNHG")
             .then(function (response) {
                 if (response.ok) {
                     response.json().then(function (data) {
                         console.log(data);
+                        var monthlyTimeSeries = data['Monthly Time Series'];
+                        //const newData = [];
+
+                        for (let date in monthlyTimeSeries) {
+                            if (monthlyTimeSeries.hasOwnProperty(date)) {
+                                var monthlyData = monthlyTimeSeries[date];
+                                var closePrice = parseFloat(monthlyData['4. close']);
+                                historicalData.push({date, close: closePrice});
+                            }
+                        }
+                        clearChart();
+                        stockChart();
                     });
                 } else {
                     alert('error');
@@ -79,7 +93,61 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     });
 }
+
+// stock chart display
+var myChart;
+function stockChart() {
+    var chartData = {
+        labels: [],
+        datasets: [{
+          label: '$',
+          data: [],
+          fill: false,
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1
+        }]
+      };
+
+      historicalData.sort((a, b) => new Date(a.date) - new Date(b.date)); //sort data in ascending order by date
+      
+      historicalData.forEach((dataPoint) => {
+        chartData.labels.push(dataPoint.date);
+        chartData.datasets[0].data.push(dataPoint.close);
+      });
+      
+      var ctx = document.getElementById('myChart').getContext('2d');
+      ctx.canvas.width = '100%';
+      myChart = new Chart(ctx, {
+        type: 'line',
+        data: chartData,
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              display: false
+            }
+          },
+          scales: {
+            x: {
+              display: true
+            },
+            y: {
+              display: true
+            }
+          }
+        }
+      });
+    }
+    // clear chart if one exists
+    function clearChart() {
+        if (myChart) {
+          myChart.destroy();
+        }
+      }
+
+
 });
+
 
 
 
