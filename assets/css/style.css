@@ -5,23 +5,56 @@
 }
 
  body { 
-    height: 100%;
+  
+    height: 100vh;
     width: 100vw;
+    background-color: black;
+    overflow: scroll;
+    
 }
 
 
+#heading{
+
+    font-size: 50px;
+    color: orange;
+    margin-right: 700px;
+    padding-right: 50px;
+    text-shadow: 2px;
+}
+
+.col.s12.m3{
+display: flexbox;
+justify-self: space-evenly;
+font-family: 'DM Serif Text', serif;;
+color: orange;
+
+}
+
+#stock-list{
+overflow: scroll;
+height: 80vh;
+}
+
+#stock-list :hover{
+
+cursor: pointer;
+
+}
+
+#search-box{
+    color: orange;
+}
 
 
-
-
-
+.row.main{
+    position: static;
+}
 
 
 .nav-wrapper{
-    background: rgb(0,0,0);
+background: rgb(0,0,0);
 background: linear-gradient(6deg, rgba(0,0,0,1) 31%, rgba(115,115,115,1) 100%);
-   
-    
 
 }
 
@@ -53,29 +86,13 @@ background: linear-gradient(173deg, rgba(0,0,0,1) 31%, rgba(115,115,115,1) 100%)
     width: 100%;
 }
 
-/* .input-group {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-  } */
-
-  /* .main {
-    height: 100%;
-  }
-   */
-  
 
 footer{
-
-
-    background: rgb(0,0,0);
+    display: flex;
+background: rgb(0,0,0);
 background: linear-gradient(6deg, rgba(0,0,0,1) 31%, rgba(115,115,115,1) 100%);
-
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-
-  
-
+position: fixed;
+bottom: 0;
+width: 100%;
+justify-content: center;
 }
-
