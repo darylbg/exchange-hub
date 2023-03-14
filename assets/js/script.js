@@ -48,14 +48,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // Click event 
     var historicalData = [];
     function searchListener() {
-    $('#stock-list li').on('click', function() {
-        var symbol = $(this).data('symbol');
-        $('#search-box').val('');
-        $('#stock-list li').show();
-        console.log(symbol);
-        
-        fetch("https://finnhub.io/api/v1/quote?symbol=" + symbol + "&token=cg370ipr01qh2qlfe4r0cg370ipr01qh2qlfe4rg")
-            .then(function (response) {
+        $('#stock-list li').on('click', function() {
+            var symbol = $(this).data('symbol');
+            $('#search-box').val('');
+            $('#stock-list li').show();
+            console.log(symbol);
+            
+            historicalData = []; // clear historicalData array before fetching new data
+    
+            fetch("https://finnhub.io/api/v1/quote?symbol=" + symbol + "&token=cg370ipr01qh2qlfe4r0cg370ipr01qh2qlfe4rg")
+                .then(function (response) {
                 if (response.ok) {
                     response.json().then(function (data) {
                         console.log(data);
