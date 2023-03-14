@@ -1,84 +1,86 @@
-* {
-    font-family: 'DM Serif Text', serif;
-   
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text&family=Roboto+Slab:wght@200&display=swap');
 
-}
-
- body { 
-  
+body { 
     height: 100vh;
     width: 100vw;
     background-color: black;
+    overflow: hidden; 
+}
+
+#heading {
+    display: inline;
+    color: orange;
+    margin-left: 100px;
+}
+
+@media screen and (max-width: 740px) {
+    #heading {
+        margin-left: 20px;
+        font-size: 25px;
+    }
+}
+
+.saved-button {
+    font-family: 'Roboto Slab', serif;
+}
+
+.saved-button a {
+    line-height: 100%;
+}
+
+.saved-button i {
+    height: 100% !important;
+    padding-left: 10px;
+    line-height: unset !important;
+}
+
+.stock-search-section {
+    display: flexbox;
+    justify-self: space-evenly;
+    font-family: 'DM Serif Text', serif;
+    color: orange;
+    padding-left: 30px !important;
+}
+
+#stock-list {
     overflow: scroll;
-    
+    height: 80vh;
 }
 
-
-#heading{
-
-    font-size: 50px;
-    color: orange;
-    margin-right: 700px;
-    padding-right: 50px;
-    text-shadow: 2px;
+#stock-list li {
+    padding: 2px 5px 2px 5px;
+    font-family: 'Roboto Slab', serif;
 }
 
-.col.s12.m3{
-display: flexbox;
-justify-self: space-evenly;
-font-family: 'DM Serif Text', serif;;
-color: orange;
-
+#stock-list li:hover {
+    cursor: pointer;  
+    background-color: #3c3d40;
 }
-
-#stock-list{
-overflow: scroll;
-height: 80vh;
-}
-
-#stock-list :hover{
-
-cursor: pointer;
-
-}
-
-#search-box{
+ 
+#search-box {
     color: orange;
 }
 
 
-.row.main{
-    position: static;
+.main{
+    padding-top: 50px;
 }
 
-
-.nav-wrapper{
-background: rgb(0,0,0);
-background: linear-gradient(6deg, rgba(0,0,0,1) 31%, rgba(115,115,115,1) 100%);
-
+.nav-wrapper {
+    background: linear-gradient(6deg, rgba(0,0,0,1) 31%, rgba(115,115,115,1) 100%);
 }
 
-
-.nav-btn a {
-    width: auto !important;
-
-    color: black;
-
-    
-  
-    
-}
-.waves-effect.waves-light.btn{
-    color: orange;
-    background: rgb(0,0,0);
-background: linear-gradient(173deg, rgba(0,0,0,1) 31%, rgba(115,115,115,1) 100%);
+.saved-button {
+    color: orange !important;
+    background: linear-gradient(173deg, rgba(0,0,0,1) 31%, rgba(115,115,115,1) 100%);
 }
 
 
 .brand-logo {
-    max-height: 100px;
-    max-width: 100px;
-    
+    height: 100%;
+    wid  
+    padding-left: 30px !important;
+    position: static !important; 
 }
 
 .brand-logo img {
@@ -87,12 +89,16 @@ background: linear-gradient(173deg, rgba(0,0,0,1) 31%, rgba(115,115,115,1) 100%)
 }
 
 
-footer{
+footer {
     display: flex;
-background: rgb(0,0,0);
-background: linear-gradient(6deg, rgba(0,0,0,1) 31%, rgba(115,115,115,1) 100%);
-position: fixed;
-bottom: 0;
-width: 100%;
-justify-content: center;
+    background: linear-gradient(6deg, rgba(0,0,0,1) 31%, rgba(115,115,115,1) 100%);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    justify-content: center;
+}
+
+#myChart {
+    height: auto !important;
+    width: 100%;
 }

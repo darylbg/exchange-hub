@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&family=Fredoka+One&family=Titan+One&display=swap" rel="stylesheet">
     
     <title>Exchange Hub</title>
 </head>
@@ -18,36 +15,34 @@
           <a href="#" class="brand-logo left">
             <img src="assets\images\icons8-money-tree-60.png" alt="logo">
           </a>
-          
+          <h3 id="heading">The Exchange Hub</h3>
           <ul id="nav-mobile" class="right">
           
-             <li id="heading">The Exchange Hub</li>
+             
             <!-- <li><a class="waves-effect waves-light btn">stocks</a></li>
             <li><a class="waves-effect waves-light btn">forex</a></li>
             <li><a class="waves-effect waves-light btn">bonds</a></li>
             <li><a class="waves-effect waves-light btn" href="secondary.html">news</a></li> -->
             
-            <li><a class="waves-effect waves-light btn">saved</a></li>
+            <li><a class="waves-effect waves-light btn saved-button">saved<i class="fa-solid fa-heart saved-button-icon"></i></a></li>
 
            
           </ul>
         </div>
     </nav>
 
-    <div class="container">
+    <div>
         <div class="row main">
-          <div class="col s12 m3">
-
-            <!--list attempt-->
+          <div class="col s12 m4 stock-search-section">
             <input type="text" id="search-box" placeholder="Search...">
             <ul id="stock-list"></ul>
-            
           </div>
-            <div class="col s12 m9">
-              <div>
-                <canvas id="myChart"></canvas>
-              </div>
+          <div class="col s12 m8 chart" id="chart-2">
+            <div>
+              <canvas id="myChart"></canvas>
             </div>
+          </div>
+            
         </div>
     </div>
 
@@ -63,6 +58,7 @@
       <img src="assets\images\icons8-twitter-48 (1).png" alt="twitter">
     </a>
        </footer> <!--chart js script tag only html addition for this branch-->
+       <script src="https://kit.fontawesome.com/711b4030dc.js" crossorigin="anonymous"></script>
        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
