@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    
-
     // gets stock names and symbols from the nasdaq exchange
     var stockData = [];
     function completeDAta() {
