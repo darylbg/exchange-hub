@@ -35,16 +35,36 @@ body {
 }
 
 .stock-search-section {
-    display: flexbox;
-    justify-self: space-evenly;
     font-family: 'DM Serif Text', serif;
     color: orange;
     padding-left: 30px !important;
+    padding-top: 100px !important;
+    height: 80vh;
+}
+
+.chart {
+    padding-top: 100px !important;
+}
+
+@media screen and (max-width: 768px) {
+    .stock-search-section {
+        height: 40%;
+        padding-top: 10px !important;
+    }
+
+    #stock-list {
+        height: 80% !important;
+    }
+
+    .chart {
+        height: 50%;
+        padding-top: 10px !important;
+    }
 }
 
 #stock-list {
-    overflow: scroll;
-    height: 80vh;
+    overflow: auto;
+    height: 100%;
 }
 
 #stock-list li {
@@ -64,6 +84,15 @@ body {
 
 .main{
     padding-top: 50px;
+    height: 100%;
+}
+
+nav { 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 56px;
 }
 
 .nav-wrapper {
@@ -85,23 +114,25 @@ body {
 }
 
 .brand-logo img {
-    height: 100%;
-    width: 100%;
+    height: 90%;
+    width: 90%;
 }
 
 
 footer {
-    display: flex;
     background: linear-gradient(6deg, rgba(0,0,0,1) 31%, rgba(115,115,115,1) 100%);
     position: fixed;
     bottom: 0;
+    left: 0;
     width: 100%;
-    justify-content: center;
+    height: 50px;
+    width: 100%;
 }
 
 #myChart {
     height: auto !important;
-    width: 100%;
+    width: 100% !important;
+    height: 100% !important;
 }
 
 .chart-container {

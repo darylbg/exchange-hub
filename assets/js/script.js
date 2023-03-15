@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     stockData.push(myObject); 
                 } 
                 marketsList(stockData);
+                console.log(stockData);
                 searchFunction();
                 searchListener();
             });
@@ -140,13 +141,10 @@ function stockChart() {
                         if (response.ok) {
                             response.json().then(function (data) {
                                 console.log(data);
-                                var name = data.name;
-                                var symbol = data.ticker;
-                                if (name == '' && symbol == '') {
-                                    savedStocks.push({name, symbol});
-                                } else {
-                                    console.log('maybe too many requests');
-                                }
+                                var Name = data.name;
+                                var Symbol = data.ticker;
+ 
+                                savedStocks.push({Name, Symbol});
                                 
                                 localStorage.setItem('stocks', JSON.stringify(savedStocks));
                             });
@@ -169,85 +167,16 @@ function stockChart() {
         }
       }
 
+    function renderSavedStocks() {
+      $('.saved-button').on('click', function() {
+        var savedItems = JSON.parse(localStorage.getItem('stocks')) || [];
+        console.log(savedItems);
+        marketsList(savedItems);
+      });
+    }
+    
+    renderSavedStocks();
+
 
 });
 
-
-
-
-
-// // gets forex names and symbols
-// var forexData = [];
-// fetch('https://finnhub.io/api/v1/forex/symbol?exchange=OANDA&token=cg370ipr01qh2qlfe4r0cg370ipr01qh2qlfe4rg')
-// .then(function (response) {
-//     if (response.ok) {
-//         response.json().then(function (data) {
-            
-//             for(let i = 0; i < data.length; i++) {
-//                 let myObject = {
-//                     Name: data[i].description.replace('Oanda ', ''),
-//                     Symbol: data[i].displaySymbol
-//                 }; 
-//                 forexData.push(myObject);
-//                 //
-//             } 
-//             //console.log(forexData);
-            
-//         });
-//     } else {
-//         alert('error');
-//     }
-// })
-// .catch(function () {
-//     alert('Unable to connect to finnhub');
-// });
-
-// // gets crypto names and symbols
-// var cryptoData = [];
-// fetch('https://api.coinbase.com/v2/assets/search?query=&country=&currencies=&type=CRYPTO&limit=100&offset=0')
-// .then(function (response) {
-//     if (response.ok) {
-//         response.json().then(function (data) {
-        
-//             for(let i = 0; i < data.data.length; i++) {
-//                 let myObject = {
-//                     Name: data.data[i].name,
-//                     Symbol: data.data[i].symbol
-//                 }; 
-//                 cryptoData.push(myObject);
-                
-//             } 
-//             //console.log(cryptoData);
-            
-//         });
-//     } else {
-//         alert('error');
-//     }
-// })
-// .catch(function () {
-//     alert('Unable to connect to finnhub');
-// });
-
-// // gets bond names and symbols
-// var bondData = [];
-// fetch('https://finnhub.io/api/v1/search?q=bond&exchange=US&token=cg370ipr01qh2qlfe4r0cg370ipr01qh2qlfe4rg')
-// .then(function (response) {
-//     if (response.ok) {
-//         response.json().then(function (data) {
-            
-//             for(let i = 0; i < data.result.length; i++) {
-//                 let myObject = {
-//                     Name: data.result[i].description,
-//                     Symbol: data.result[i].symbol
-//                 }; 
-//                 bondData.push(myObject);
-//             } 
-//             //console.log(bondData);
-//         });
-//     } else {
-//         alert('error');
-//     }
-// })
-// .catch(function () {
-//     alert('Unable to connect to finnhub');
-// });
