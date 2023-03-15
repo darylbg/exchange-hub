@@ -64,6 +64,8 @@ document.addEventListener('DOMContentLoaded', function() {
         $('#search-box').val('');
         $('#stock-list li').show();
         $('#chart-title').text($(this).text());
+
+        historicalData = [];
         
         // gets historical data from alpha vantage api
         fetch("https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=" + symbol + "&apikey=ECSVW0D22JG4GNHG")

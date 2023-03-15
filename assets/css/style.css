@@ -21,7 +21,8 @@ body {
 }
 
 #reset-button,
-.saved-button {
+.saved-button,
+.chart-container button {
     color: orange !important;
     background: linear-gradient(173deg, rgba(0,0,0,1) 31%, rgba(115,115,115,1) 100%);
     font-family: 'Roboto Slab', serif;
@@ -89,7 +90,6 @@ body {
 
 
 .main{
-    padding-top: 50px;
     height: 100%;
 }
 
