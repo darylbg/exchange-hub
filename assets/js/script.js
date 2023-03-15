@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // gets stock names and symbols from the nasdaq exchange
     var stockData = [];
+    function completeDAta() {
     fetch('https://finnhub.io/api/v1/stock/symbol?exchange=US&mic=XNAS&token=cg370ipr01qh2qlfe4r0cg370ipr01qh2qlfe4rg')
     .then(function (response) {
         if (response.ok) {
@@ -27,10 +28,12 @@ document.addEventListener('DOMContentLoaded', function() {
     .catch(function () {
         alert('Unable to connect to finnhub');
     });
+  } completeDAta();
        
     // Generate stock list
     function marketsList(data) {
         var $stockList = $('#stock-list');
+        $stockList.empty();
          // Generate list
         $.each(data, function(index, stock) {
             var $stockItem = $('<li>').text(stock.Name).data('symbol', stock.Symbol);
@@ -57,9 +60,10 @@ document.addEventListener('DOMContentLoaded', function() {
     $('#stock-list li').on('click', function() {
         symbol = $(this).data('symbol');
         console.log(symbol);
+        console.log($(this).text());
         $('#search-box').val('');
         $('#stock-list li').show();
-        //$('#chart-title').text($('#stock-list li:selected').text());
+        $('#chart-title').text($(this).text());
         
         // gets historical data from alpha vantage api
         fetch("https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=" + symbol + "&apikey=ECSVW0D22JG4GNHG")
@@ -144,7 +148,7 @@ function stockChart() {
                                 var Name = data.name;
                                 var Symbol = data.ticker;
  
-                                savedStocks.push({Name, Symbol});
+                                savedStocks.unshift({Name, Symbol});
                                 
                                 localStorage.setItem('stocks', JSON.stringify(savedStocks));
                             });
@@ -170,12 +174,19 @@ function stockChart() {
     function renderSavedStocks() {
       $('.saved-button').on('click', function() {
         var savedItems = JSON.parse(localStorage.getItem('stocks')) || [];
+        $('.reset-button').removeClass('reset-button');
         console.log(savedItems);
         marketsList(savedItems);
+        searchListener();
       });
     }
     
     renderSavedStocks();
+
+    $('#reset-button').on('click', function() {
+      completeDAta();
+      $('#reset-button').addClass('reset-button');
+    });
 
 
 });

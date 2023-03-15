@@ -13,25 +13,31 @@ body {
     margin-left: 100px;
 }
 
-@media screen and (max-width: 740px) {
+@media screen and (max-width: 802px) {
     #heading {
         margin-left: 20px;
         font-size: 25px;
     }
 }
 
+#reset-button,
 .saved-button {
+    color: orange !important;
+    background: linear-gradient(173deg, rgba(0,0,0,1) 31%, rgba(115,115,115,1) 100%);
     font-family: 'Roboto Slab', serif;
 }
 
+#reset-button a,
 .saved-button a {
     line-height: 100%;
 }
 
+#reset-button i,
 .saved-button i {
     height: 100% !important;
     padding-left: 10px;
     line-height: unset !important;
+    font-size: 15px;
 }
 
 .stock-search-section {
@@ -99,14 +105,6 @@ nav {
     background: linear-gradient(6deg, rgba(0,0,0,1) 31%, rgba(115,115,115,1) 100%);
 }
 
-.saved-button {
-    color: orange !important;
-    background: linear-gradient(173deg, rgba(0,0,0,1) 31%, rgba(115,115,115,1) 100%);
-}
-
-
-
-
 .brand-logo {
     height: 100%;
     padding-left: 30px !important;
@@ -141,6 +139,14 @@ footer {
   
   .chart-container button {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 0px;
+    left: 50px;
+  }
+
+  .reset-button {
+    display: none !important;
+  }
+
+  #chart-title {
+    color: white;
   }
