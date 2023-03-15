@@ -1,45 +1,48 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    // gets stock names and symbols from the nasdaq exchange
+    // gets stock names and symbols from the nasdaq exchange 
+    // initialize empty array for api data
     var stockData = [];
     function completeDAta() {
     fetch('https://finnhub.io/api/v1/stock/symbol?exchange=US&mic=XNAS&token=cg370ipr01qh2qlfe4r0cg370ipr01qh2qlfe4rg')
     .then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
+              // takes name and symbol data from api and stores it in a json object
                 for(let i = 0; i < data.length; i++) { 
                     let myObject = {
                         Name: data[i].description,
                         Symbol: data[i].symbol
                     }; 
+                    // pushed json object to initializes array stock data
                     stockData.push(myObject); 
                 } 
+                // call various functions
                 marketsList(stockData);
-                console.log(stockData);
                 searchFunction();
                 searchListener();
             });
         } else {
-            alert('error');
+            console.log('error');
         }
     })
     .catch(function () {
-        alert('Unable to connect to finnhub');
+        console.log('Unable to connect to finnhub');
     });
   } completeDAta();
        
-    // Generate stock list
-    function marketsList(data) {
-        var $stockList = $('#stock-list');
-        $stockList.empty();
-         // Generate list
-        $.each(data, function(index, stock) {
-            var $stockItem = $('<li>').text(stock.Name).data('symbol', stock.Symbol);
-            $stockList.append($stockItem);
-        });
+  // Generate stock list
+  function marketsList(data) {
+      var $stockList = $('#stock-list');
+      $stockList.empty();
+       // create html list items and displays stock data to them
+      $.each(data, function(index, stock) {
+          var $stockItem = $('<li>').text(stock.Name).data('symbol', stock.Symbol);
+          $stockList.append($stockItem);
+      });
     }  
     
-    // Search function
+    // Search function 
     function searchFunction() {
         $('#search-box').on('keyup', function() {
             var value = $(this).val().toLowerCase();
@@ -49,16 +52,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Click event 
+    // initializes array for historical api data
     var historicalData = [];
-    
+    // set variable symbol to global
     var symbol;
-    
+    // function to historical data for selected stock
     function searchListener() {
     $('#stock-list li').on('click', function() {
         symbol = $(this).data('symbol');
-        console.log(symbol);
-        console.log($(this).text());
         $('#search-box').val('');
         $('#stock-list li').show();
         $('#chart-title').text($(this).text());
@@ -70,8 +71,8 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(function (response) {
                 if (response.ok) {
                     response.json().then(function (data) {
+                      // gets date and closing price values from api and pushes to the empty historical data array 
                         var monthlyTimeSeries = data['Monthly Time Series'];
-                        console.log(data);
                         for (let date in monthlyTimeSeries) {
                             if (monthlyTimeSeries.hasOwnProperty(date)) {
                                 var monthlyData = monthlyTimeSeries[date];
@@ -83,17 +84,17 @@ document.addEventListener('DOMContentLoaded', function() {
                         stockChart();
                     });
                 } else {
-                    alert('error');
+                    console.log('error');
                 }
             })
             .catch(function() {
-                alert('Unable to connect to finnhub');
+                console.log('Unable to connect to finnhub');
             });
     });
 }
-
+// looks for local storag and sets an empty array if nothing found
 var savedStocks = JSON.parse(localStorage.getItem('stocks')) || [];
-// stock chart display
+// stock chart display stock chart made with chart.js
 var myChart;
 function stockChart() {
     var chartData = {
@@ -106,14 +107,14 @@ function stockChart() {
           tension: 0.1
         }]
       };
-
-      historicalData.sort((a, b) => new Date(a.date) - new Date(b.date)); //sort data in ascending order by date
+// sorts historical data array in acending order by date
+      historicalData.sort((a, b) => new Date(a.date) - new Date(b.date));
       
       historicalData.forEach((dataPoint) => {
         chartData.labels.push(dataPoint.date);
         chartData.datasets[0].data.push(dataPoint.close);
       });
-      
+      // set chart paramiters
       var ctx = document.getElementById('myChart').getContext('2d');
       ctx.canvas.width = '100%';
       myChart = new Chart(ctx, {
@@ -134,30 +135,30 @@ function stockChart() {
               display: true
             }
           },
+          // creats a save button for each stock chart
           animation: {
             onComplete: function() {
               var button = $('<button/>', {
                 text: 'Save',
                 click: function() {
+                  // when save button is clicked name and symbol is saved to local storage
                     fetch("https://finnhub.io/api/v1/stock/profile2?symbol=" + symbol + "&token=cg370ipr01qh2qlfe4r0cg370ipr01qh2qlfe4rg")
                     .then(function (response) {
                         console.log(symbol);
                         if (response.ok) {
                             response.json().then(function (data) {
-                                console.log(data);
                                 var Name = data.name;
                                 var Symbol = data.ticker;
- 
                                 savedStocks.unshift({Name, Symbol});
-                                
                                 localStorage.setItem('stocks', JSON.stringify(savedStocks));
                             });
                         } else {
-                            alert('error');
+                            console.log('error');
                         }
                     })
                 }
               });
+              // attached button to the dom
               $('.chart-container').append(button);
             }
           }
@@ -170,19 +171,16 @@ function stockChart() {
           myChart.destroy();
         }
       }
-
+// function to display locally saved items
     function renderSavedStocks() {
       $('.saved-button').on('click', function() {
         var savedItems = JSON.parse(localStorage.getItem('stocks')) || [];
         $('.reset-button').removeClass('reset-button');
-        console.log(savedItems);
         marketsList(savedItems);
         searchListener();
       });
-    }
-    
-    renderSavedStocks();
-
+    }renderSavedStocks();
+// hides home button on click
     $('#reset-button').on('click', function() {
       completeDAta();
       $('#reset-button').addClass('reset-button');
