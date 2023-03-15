@@ -51,9 +51,10 @@ body {
 
 .chart {
     padding-top: 100px !important;
+    max-height: 90%;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
     .stock-search-section {
         height: 40%;
         padding-top: 10px !important;
@@ -116,7 +117,6 @@ nav {
     width: 90%;
 }
 
-
 footer {
     background: linear-gradient(6deg, rgba(0,0,0,1) 31%, rgba(115,115,115,1) 100%);
     position: fixed;
@@ -125,6 +125,22 @@ footer {
     width: 100%;
     height: 50px;
     width: 100%;
+    padding-top: 0 !important;
+}
+
+.footer-icon-ul {
+    text-align: center;
+    margin: 0;
+}
+
+.footer-icon {
+    display: inline-block;
+    margin: 0px 10px 0px 10px;
+    font-size: 25px; 
+}
+
+.footer-icon a i {
+    color: orange;
 }
 
 #myChart {
@@ -135,18 +151,18 @@ footer {
 
 .chart-container {
     position: relative;
-  }
-  
-  .chart-container button {
+}
+
+.chart-container button {
     position: absolute;
     top: 0px;
-    left: 50px;
-  }
+    left: 60px;
+}
 
-  .reset-button {
+.reset-button {
     display: none !important;
-  }
+}
 
-  #chart-title {
+#chart-title {
     color: white;
-  }
+}
