@@ -83,7 +83,7 @@ nav {
 @media screen and (max-width: 600px) {
     .stock-search-section {
         height: 40%;
-        padding-top: 10px !important;
+        padding-top: 50px !important;
     }
 
     #stock-list {
